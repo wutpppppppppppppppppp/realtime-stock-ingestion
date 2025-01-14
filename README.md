@@ -17,10 +17,7 @@ This project showcases a pipeline where data is ingested through Kafka, processe
 
 ## Prerequisites
 
-- Java 8 or higher
-- Apache Kafka
-- Apache Spark
-- Elasticsearch
+- Docker and Docker Compose
 - Python (optional, for additional scripts)
 
 ## Setup
@@ -32,26 +29,35 @@ This project showcases a pipeline where data is ingested through Kafka, processe
    cd kafka-spark-elasticsearch
    ```
 
-2. **Start Kafka:**
-   Follow the [Kafka Quickstart](https://kafka.apache.org/quickstart) guide to set up and start Kafka.
+2. **Build Docker images:**
 
-3. **Start Elasticsearch:**
-   Follow the [Elasticsearch Getting Started](https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html) guide to set up and start Elasticsearch.
+   ```sh
+   make build
+   ```
 
-4. **Configure Spark:**
-   Ensure Spark is configured to connect to your Kafka and Elasticsearch instances.
+3. **Start all services and create Kafka topic:**
+
+   ```sh
+   make start
+   ```
 
 ## Usage
 
-1. **Run the Spark job:**
-
-   ```sh
-   spark-submit --class com.example.YourSparkApp --master local[2] path/to/your/spark-app.jar
-   ```
-
-2. **Monitor the data flow:**
+1. **Monitor the data flow:**
    - Use Kafka tools to monitor the topics.
    - Use Kibana or another Elasticsearch client to visualize the data.
+
+2. **View logs:**
+   - Kafka Broker: `make logs-broker`
+   - Kafka Producer: `make logs-producer`
+   - Spark: `make logs-spark`
+   - Elasticsearch: `make logs-elastic`
+
+3. **Stop all services:**
+
+   ```sh
+   make stop
+   ```
 
 ## Contributing
 
