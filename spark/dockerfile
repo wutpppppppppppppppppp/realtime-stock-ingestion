@@ -1,0 +1,15 @@
+FROM apache/spark:python3
+
+WORKDIR /app
+
+# Install pip
+USER root
+RUN apt-get update && apt-get install -y python3-pip && rm -rf /var/lib/apt/lists/*
+
+# Copy the Spark job script into the container
+COPY spark_streaming_job.py .
+
+# Install Python dependencies
+RUN pip install pyspark
+
+CMD ["sh", "-c", "sleep 30 && /opt/spark/bin/spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1,org.elasticsearch:elasticsearch-spark-30_2.12:8.10.2 /app/spark_streaming_job.py"]
