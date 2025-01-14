@@ -1,6 +1,6 @@
 # Kafka-Spark-Elasticsearch Project
 
-This project demonstrates the integration of Apache Kafka, Apache Spark, and Elasticsearch for real-time data processing and analytics.
+This project demonstrates the integration of Apache Kafka, Apache Spark, and Elasticsearch for real-time data processing and analytics with mock stock data.
 
 ## Table of Contents
 
